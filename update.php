@@ -8,6 +8,7 @@ if (isset($_GET['id'])) {
         // This part is similar to the create.php, but instead we update a record and not insert 
         $id = isset($_POST['id']) ? $_POST['id'] : NULL;
         $name = isset($_POST['name']) ? $_POST['name'] : '';
+        $lastname = isset($_POST['lastname']) ? $_POST['lastname'] : '';
         $email = isset($_POST['email']) ? $_POST['email'] : '';
         $phone = isset($_POST['phone']) ? $_POST['phone'] : '';
         $title = isset($_POST['title']) ? $_POST['title'] : '';
@@ -34,10 +35,14 @@ if (isset($_GET['id'])) {
 <div class="content update">
     <h2>Update Contact #<?= $contact['id'] ?></h2>
     <form action="update.php?id=<?= $contact['id'] ?>" method="post">
-        <label for="id">ID</label>
+        <label for="id" class='id'>ID</label>
+        <label for="deparment">Deparment</label>
+        <input type="text" name="id" placeholder="26" value="auto" id="id">
+        <input type="text" name="department" placeholder="IT" id="department">
         <label for="name">Name</label>
-        <input type="text" name="id" placeholder="1" value="<?= $contact['id'] ?>" id="id">
-        <input type="text" name="name" placeholder="John Doe" value="<?= $contact['name'] ?>" id="name">
+        <label for="lastname">Lastname</label>
+        <input type="text" name="name" placeholder="John" id="name">
+        <input type="text" name="lastname" placeholder="Doe" id="lastname">
         <label for="email">Email</label>
         <label for="phone">Phone</label>
         <input type="text" name="email" placeholder="johndoe@example.com" value="<?= $contact['email'] ?>" id="email">

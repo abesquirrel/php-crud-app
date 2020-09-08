@@ -9,6 +9,7 @@ if (!empty($_POST)) {
     $id = isset($_POST['id']) && !empty($_POST['id']) && $_POST['id'] != 'auto' ? $_POST['id'] : NULL;
     // Check if POST variable "name" exists, if not default the value to blank, basically the same for all variables
     $name = isset($_POST['name']) ? $_POST['name'] : '';
+    $lastname = isset($_POST['lastname']) ? $_POST['lastname'] : '';
     $email = isset($_POST['email']) ? $_POST['email'] : '';
     $phone = isset($_POST['phone']) ? $_POST['phone'] : '';
     $title = isset($_POST['title']) ? $_POST['title'] : '';
@@ -27,9 +28,13 @@ if (!empty($_POST)) {
     <h2>Create Contact</h2>
     <form action="create.php" method="post">
         <label for="id">ID</label>
-        <label for="name">Name</label>
+        <label for="deparment">Deparment</label>
         <input type="text" name="id" placeholder="26" value="auto" id="id">
-        <input type="text" name="name" placeholder="John Doe" id="name">
+        <input type="text" name="department" placeholder="IT" id="department">
+        <label for="name">Name</label>
+        <label for="lastname">Lastname</label>
+        <input type="text" name="name" placeholder="John" id="name">
+        <input type="text" name="lastname" placeholder="Doe" id="lastname">
         <label for="email">Email</label>
         <label for="phone">Phone</label>
         <input type="text" name="email" placeholder="johndoe@example.com" id="email">
