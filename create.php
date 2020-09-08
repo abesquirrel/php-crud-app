@@ -8,6 +8,7 @@ if (!empty($_POST)) {
     // Set-up the variables that are going to be inserted, we must check if the POST vaiables exist if not will be default to blank
     $id = isset($_POST['id']) && !empty($_POST['id']) && $_POST['id'] != 'auto' ? $_POST['id'] : NULL;
     // Check if POST variable "name" exists, if not default the value to blank, basically the same for all variables
+    $department = isset($_POST['department']) ? $_POST['department'] : '';
     $name = isset($_POST['name']) ? $_POST['name'] : '';
     $lastname = isset($_POST['lastname']) ? $_POST['lastname'] : '';
     $email = isset($_POST['email']) ? $_POST['email'] : '';
@@ -15,8 +16,8 @@ if (!empty($_POST)) {
     $title = isset($_POST['title']) ? $_POST['title'] : '';
     $created = isset($_POST['created']) ? $_POST['created'] : date('Y-m-d H:i:s');
     // Insert new record into the contacts table 
-    $stmt = $pdo->prepare('INSERT INTO contacts VALUES (?,?,?,?,?,?)');
-    $stmt->execute([$id, $name, $email, $phone, $title, $created]);
+    $stmt = $pdo->prepare('INSERT INTO contacts VALUES (?,?,?,?,?,?,?,?)');
+    $stmt->execute([$id, $department, $name, $lastname, $email, $phone, $title, $created]);
     // Output message
     $msg = 'Created Successfully!';
 }

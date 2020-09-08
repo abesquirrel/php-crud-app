@@ -7,6 +7,7 @@ if (isset($_GET['id'])) {
     if (!empty($_POST)) {
         // This part is similar to the create.php, but instead we update a record and not insert 
         $id = isset($_POST['id']) ? $_POST['id'] : NULL;
+        $department = isset($_POST['department']) ? $_POST['department'] : '';
         $name = isset($_POST['name']) ? $_POST['name'] : '';
         $lastname = isset($_POST['lastname']) ? $_POST['lastname'] : '';
         $email = isset($_POST['email']) ? $_POST['email'] : '';
@@ -14,8 +15,8 @@ if (isset($_GET['id'])) {
         $title = isset($_POST['title']) ? $_POST['title'] : '';
         $created = isset($_POST['created']) ? $_POST['created'] : date('Y-m-d H-i-s');
         // Update the record
-        $stmt = $pdo->prepare('UPDATE contacts SET id = ?, name = ?, email = ?, phone = ?, title = ?, created = ? WHERE id = ?');
-        $stmt->execute([$id, $name, $email, $phone, $title, $created, $_GET['id']]);
+        $stmt = $pdo->prepare('UPDATE contacts SET id = ?, department = ?, name = ?, lastname = ?, email = ?, phone = ?, title = ?, created = ? WHERE id = ?');
+        $stmt->execute([$id, $department, $name, $lastname, $email, $phone, $title, $created, $_GET['id']]);
         $msg = 'Updated Successfully!';
     }
     // Get the contact from the contacts table
@@ -41,8 +42,8 @@ if (isset($_GET['id'])) {
         <input type="text" name="department" placeholder="IT" id="department">
         <label for="name">Name</label>
         <label for="lastname">Lastname</label>
-        <input type="text" name="name" placeholder="John" id="name">
-        <input type="text" name="lastname" placeholder="Doe" id="lastname">
+        <input type="text" name="name" placeholder="John" value="<?= $contact['name'] ?>" id="name">
+        <input type="text" name="lastname" placeholder="Doe" value="<?= $contact['lastname'] ?>" id="lastname">
         <label for="email">Email</label>
         <label for="phone">Phone</label>
         <input type="text" name="email" placeholder="johndoe@example.com" value="<?= $contact['email'] ?>" id="email">
