@@ -2,10 +2,10 @@
 include 'functions.php';
 $pdo = pdo_connect_mysql();
 $msg = '';
-// Check if the contact id exist, for example update.php?id=1 will get the contact with the id of 1
+// Check if the contact id exists, for example update.php?id=1 will get the contact with the id of 1
 if (isset($_GET['id'])) {
     if (!empty($_POST)) {
-        // This part is similar to the create.php, but instead we update a record and not insert 
+        // This part is similar to the create.php, but instead we update a record and not insert
         $id = isset($_POST['id']) ? $_POST['id'] : NULL;
         $department = isset($_POST['department']) ? $_POST['department'] : '';
         $name = isset($_POST['name']) ? $_POST['name'] : '';
@@ -13,7 +13,7 @@ if (isset($_GET['id'])) {
         $email = isset($_POST['email']) ? $_POST['email'] : '';
         $phone = isset($_POST['phone']) ? $_POST['phone'] : '';
         $title = isset($_POST['title']) ? $_POST['title'] : '';
-        $created = isset($_POST['created']) ? $_POST['created'] : date('Y-m-d H-i-s');
+        $created = isset($_POST['created']) ? $_POST['created'] : date('Y-m-d H:i:s');
         // Update the record
         $stmt = $pdo->prepare('UPDATE contacts SET id = ?, department = ?, name = ?, lastname = ?, email = ?, phone = ?, title = ?, created = ? WHERE id = ?');
         $stmt->execute([$id, $department, $name, $lastname, $email, $phone, $title, $created, $_GET['id']]);
@@ -36,10 +36,10 @@ if (isset($_GET['id'])) {
 <div class="content update">
     <h2>Update Contact #<?= $contact['id'] ?></h2>
     <form action="update.php?id=<?= $contact['id'] ?>" method="post">
-        <label for="id" class='id'>ID</label>
-        <label for="deparment">Deparment</label>
-        <input type="text" name="id" placeholder="26" value="auto" id="id">
-        <input type="text" name="department" placeholder="IT" id="department">
+        <label for="id">ID</label>
+        <label for="department">Department</label>
+        <input type="text" name="id" placeholder="1" value="<?= $contact['id'] ?>" id="id">
+        <input type="text" name="department" placeholder="IT" value="<?= $contact['department'] ?>" id="department">
         <label for="name">Name</label>
         <label for="lastname">Lastname</label>
         <input type="text" name="name" placeholder="John" value="<?= $contact['name'] ?>" id="name">
